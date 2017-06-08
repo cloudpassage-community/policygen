@@ -1,0 +1,6 @@
+cloudpassage==1.0.6.5
+pyaml==16.12.2
+PyYAML==3.12
+requests==2.14.2
+simplejson==3.10.0
+wheel==0.24.0

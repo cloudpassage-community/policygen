@@ -1,0 +1,70 @@
+# Created by Brian Adams, DevOps Contractor, 2016.
+# Set the enabled group names to apply for user. Set group definitions below based 
+# on current template. Currently no verification and rule added whether or not 
+# there are duplicates in existing policy, so set inactive and verify first. 
+
+# When setting rule to active, all rules that match the comment string will be
+# set to active. Comments are NOT wildcards and have to be explicit.
+
+# Any values set in "groups" will override values set in specified rule set.
+
+# A group with the name of "qa" with wildcard enabled will match all policies with name in portal,
+# like qa test, qa staging, qa cassandra, etc. With wildcard disabled will only match "qa."
+# Doing a dry run to see which policies will change is highly recommended.
+
+groups:
+  enabled: group1, group2, group3 
+  comment: autogen1
+  usernames: foobar
+  # How many to subtract from the last position
+  subtractfromlastrule: 1 
+
+group1:
+  name: foo
+  chain: INPUT
+  active: False
+  source: None
+  destination: None
+  states:
+  action: ACCEPT
+  services: ssh, https
+  log: False
+  log_prefix:
+  comment:
+  username:
+  wildcard: False
+  position:
+  subtractfromlastrule:
+
+group2:
+  name: bar
+  chain: INPUT
+  active: False
+  source:
+  destination:
+  states: NEW, ESTABLISHED
+  services: ssh
+  action: ACCEPT
+  log: false
+  log_prefix:
+  comment:
+  username:
+  wildcard: True
+  position:
+  subtractfromlastrule:
+
+group3:
+  name: foobar
+  chain: INPUT
+  active: False
+  source:
+  destination:
+  states: NEW, ESTABLISHED
+  services: cp-ssh
+  action: ACCEPT
+  log: false
+  log_prefix:
+  comment:
+  username:
+  wildcard: False
+  subtractfromlastrule:
